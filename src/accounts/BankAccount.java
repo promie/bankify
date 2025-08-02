@@ -1,6 +1,7 @@
 package accounts;
 
 import models.Transaction;
+import models.TransactionType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class BankAccount {
     public void deposit(double amount) {
         if(amount > 0) {
             this.balance += amount;
-            transactionHistory.add(new Transaction(amount, "deposit"));
+            transactionHistory.add(new Transaction(amount, TransactionType.DEPOSIT));
             System.out.println("$" + amount + " deposited");
             System.out.println("Your current balance is $" + this.balance);
         }else {
@@ -42,7 +43,7 @@ public class BankAccount {
        }
 
        this.balance -= amount;
-       transactionHistory.add(new Transaction(amount, "withdraw"));
+       transactionHistory.add(new Transaction(amount, TransactionType.WITHDRAW));
        System.out.println("Your withdrawal amount is $" + amount);
        System.out.println("Your current balance is $" + this.balance);
     }
