@@ -1,20 +1,13 @@
-import accounts.SavingsAccount;
+import accounts.CheckingAccount;
 
 public class Main {
     public static void main(String[] args) {
-        // Create a SavingsAccount with 5% interest
-        SavingsAccount savings = new SavingsAccount("789123", "Promie", 0.05);
+        CheckingAccount checking = new CheckingAccount("222333", "Promie", 500);
 
-        // Deposit money
-        savings.deposit(500);
+        checking.deposit(100); // Balance: 100
+        checking.withdraw(200); // Allowed (overdraft -100)
+        checking.withdraw(500); // Not allowed (would go to -600)
 
-        // Apply interest (5% of 500 = 25)
-        savings.applyInterest();
-
-        // Withdraw money
-        savings.withdraw(100);
-
-        // Display account info
-        System.out.println(savings.getAccountInfo());
+        System.out.println(checking.getAccountInfo());
     }
 }
