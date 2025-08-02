@@ -30,5 +30,10 @@ public class Main {
         for(BankAccount account : accounts) {
             System.out.println(account.getAccountInfo());
         }
+
+        // Transaction histories for different accounts
+        regular.printTransactionHistory();
+        savings.printTransactionHistory();
+        checking.printTransactionHistory();
     }
 }

@@ -1,5 +1,7 @@
 package accounts;
 
+import models.Transaction;
+
 public class CheckingAccount extends BankAccount {
     private final double overdraftLimit;
 
@@ -21,6 +23,9 @@ public class CheckingAccount extends BankAccount {
         }
 
         balance -= amount;
+        // Determine transaction type
+        String type = balance < 0 ? "overdraft" : "withdraw";
+        transactionHistory.add(new Transaction(amount, type));
         System.out.println("Withdrew $" + amount + " (Overdraft allowed)");
     }
 

@@ -1,9 +1,15 @@
 package accounts;
 
+import models.Transaction;
+import java.util.ArrayList;
+import java.util.List;
+
 public class BankAccount {
     protected String accountNumber;
     protected String ownerName;
     protected double balance;
+
+    protected List<Transaction> transactionHistory = new ArrayList<>();
 
     // Constructor
     public BankAccount(String accountNumber, String ownerName) {
@@ -16,6 +22,7 @@ public class BankAccount {
     public void deposit(double amount) {
         if(amount > 0) {
             this.balance += amount;
+            transactionHistory.add(new Transaction(amount, "deposit"));
             System.out.println("$" + amount + " deposited");
             System.out.println("Your current balance is $" + this.balance);
         }else {
@@ -35,6 +42,7 @@ public class BankAccount {
        }
 
        this.balance -= amount;
+       transactionHistory.add(new Transaction(amount, "withdraw"));
        System.out.println("Your withdrawal amount is $" + amount);
        System.out.println("Your current balance is $" + this.balance);
     }
@@ -47,5 +55,12 @@ public class BankAccount {
     // Display account info
     public String getAccountInfo() {
         return "Owner: " + this.ownerName + " | Account: " + this.accountNumber + " | Balance: $" + this.balance;
+    }
+
+    public void printTransactionHistory() {
+        System.out.println("Transaction history for " + accountNumber + ":");
+        for (Transaction transaction : transactionHistory) {
+            System.out.println(transaction.getSummary());
+        }
     }
 }
