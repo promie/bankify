@@ -1,16 +1,20 @@
-import accounts.BankAccount;
+import accounts.SavingsAccount;
 
 public class Main {
     public static void main(String[] args) {
-        BankAccount account = new BankAccount("123456", "Promie");
+        // Create a SavingsAccount with 5% interest
+        SavingsAccount savings = new SavingsAccount("789123", "Promie", 0.05);
 
-        // Test deposit money
-        account.deposit(500);
+        // Deposit money
+        savings.deposit(500);
 
-        // Test Withdrawal
-        account.withdraw(250);
+        // Apply interest (5% of 500 = 25)
+        savings.applyInterest();
 
-        // Print account info
-        System.out.println(account.getAccountInfo());
+        // Withdraw money
+        savings.withdraw(100);
+
+        // Display account info
+        System.out.println(savings.getAccountInfo());
     }
 }
